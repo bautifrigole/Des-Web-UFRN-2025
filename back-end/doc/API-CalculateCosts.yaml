@@ -1,0 +1,564 @@
+---
+openapi: 3.0.0
+info:
+  title: Calculate Costs
+  description: Calculate Costs API
+  version: 1.0.0
+servers:
+- url: localhost:3000/
+tags:
+- name: Public User
+  description: Operaciones disponibles para cualquier usuario
+- name: Auth User
+  description: Operaciones disponibles para usuarios autentificados y autorizados
+
+paths:
+
+  /register:
+    post:
+      tags:
+      - Public User
+      summary: registro de usuario
+      description: |
+        Al pasar email, user_password, first_name y last_name, se registra a ese usuario en la base de datos.
+      operationId: register
+      requestBody:
+        description: "Contiene email, user_password, first_name y last_name del usuario a registrar"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user_register_body'
+        required: true
+      responses:
+        "200":
+          description: Registro exitoso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "401":
+          description: El usuario ya existe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+        "403":
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_403'
+        "500":
+          description: Error de servidor. Ocurre cuando falla una consulta a la base de datos o algún framento de código del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+
+  /login:
+    post:
+      tags:
+      - Public User
+      summary: login de usuario
+      description: |
+        Al pasar email y password, se inicia sesión de ese usuario especificado.
+      operationId: login
+      requestBody:
+        description: "Contiene email y password del usuario a iniciar sesión"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/auth_login_body'
+        required: true
+      responses:
+        "200":
+          description: Login exitoso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        "401":
+          description: El usuario no existe / Contraseña incorrecta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401_1'
+        "403":
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_403'
+        "500":
+          description: Error de servidor. Ocurre cuando falla una consulta a la base de datos o algún framento de código del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+
+  /user:
+    get:
+      tags:
+      - Auth User
+      summary: perfil del usuario
+      description: |
+        Al pasar el token del usuario devuelve los datos del mismo.
+      operationId: user
+      parameters:
+      - name: token
+        in: header
+        description: Token del usuario
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODMzMjcyMDEsImV4cCI6MTY4MzMzMDgwMX0._b3x77CNNs0j4MOPDwpClK5rfHom_mWaauAe50RhicU
+      responses:
+        "200":
+          description: El id de usuario existe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        "401":
+          description: El id de usuario no existe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+        "403":
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_403'
+        "500":
+          description: Error de servidor. Ocurre cuando falla una consulta a la base de datos o algún framento de código del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+
+  /is-verified:
+    get:
+      tags:
+      - Public User
+      summary: verificación de usuario
+      description: |
+        Al pasar token, se devuelve si el usuario está verificado.
+      operationId: is-verified
+      parameters:
+        - in: header
+          name: token
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODMzMjcyMDEsImV4cCI6MTY4MzMzMDgwMX0._b3x77CNNs0j4MOPDwpClK5rfHom_mWaauAe50RhicU
+      responses:
+        "200":
+          description: El usuario está verificado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_log_true'
+        "403":
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_403'
+        "500":
+          description: Error de servidor. Ocurre cuando falla una consulta a la base de datos o algún framento de código del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+
+  /change-password:
+    post:
+      tags:
+      - Auth User
+      summary: cambiar contraseña de usuario
+      description: |
+        Al pasar password, new_password y token, se cambia la contraseña del usuario especificado.
+      operationId: change-password
+      parameters:
+      - name: token
+        in: header
+        description: Token del usuario
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODMzMjcyMDEsImV4cCI6MTY4MzMzMDgwMX0._b3x77CNNs0j4MOPDwpClK5rfHom_mWaauAe50RhicU
+      requestBody:
+        description: "Contiene password y new_password del usuario a cambiar contraseña"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/auth_change_password_body'
+        required: true
+      responses:
+        "200":
+          description: Cambio de contraseña exitoso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_log_true'
+        "401":
+          description: Contraseña incorrecta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401_1'
+        "403":
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_403'
+        "500":
+          description: Error de servidor. Ocurre cuando falla una consulta a la base de datos o algún framento de código del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+
+  /modify-user:
+    put:
+      tags:
+      - Auth User
+      summary: modificación de datos del usuario
+      description: |
+        Al pasar email, first_name y last_name, se modifica ese usuario en la base de datos.
+      operationId: modify-user
+      requestBody:
+        description: "Contiene los datos a modificar del usuario con el user_id especificado"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/auth_modify_user_body'
+        required: true
+      responses:
+        "200":
+          description: Modificación exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'        
+        "403":
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_403'
+        "500":
+          description: Error de servidor. Ocurre cuando falla una consulta a la base de datos o algún framento de código del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+
+  /load-data:
+    post:
+      tags:
+      - Auth User
+      summary: carga de datos del grupo
+      description: |
+        Al enviar datos de usuarios, gastos y pagos, se cargan en la base de datos.
+      operationId: load-data
+      requestBody:
+        description: "Contiene los datos de usuarios, gastos y pagos a cargar"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/auth_load_data_body'
+        required: true
+      responses:
+        "200":
+          description: Carga exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'        
+        "403":
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_403'
+        "500":
+          description: Error de servidor. Ocurre cuando falla una consulta a la base de datos o algún framento de código del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_500'
+  
+  #/auth/add-group:
+
+  #/auth/add-group-member:
+
+  #/auth/add-expense:
+
+  #/auth/add-payment:
+
+  #/auth/vinculate-group-member:
+
+components:
+  schemas:
+    user_register_body:
+      required:
+      - form
+      type: object
+      properties:
+        form: 
+          properties:
+            email:
+              type: string
+              example: "lionelmessi@mail.com"
+            user_password:
+              type: string
+              example: uigf67efuy5fwtydhwi8ftye6
+            first_name:
+              type: string
+              example: Lionel
+            last_name:
+              type: string
+              example: Messi
+            role_id:
+              type: integer
+              example: 1
+            
+    inline_response_200:
+      type: object
+      properties:
+        log:
+          type: string
+          example: Usuario creado
+        token:
+          type: string
+          example: jkewihfuiwefnwehf74873tr632uhrn34h3uihfyu764hfhty
+    inline_response_401:
+      type: object
+      properties:
+        log:
+          type: string
+          example: El usuario ya existe
+    inline_response_403:
+      type: object
+      properties:
+        log:
+          type: string
+          example: Not authorized
+    inline_response_500:
+      type: object
+      properties:
+        log:
+          type: string
+          example: Server error
+    
+    auth_login_body:
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+          example: "user1234@mail.com"
+        password:
+          type: string
+          example: uigf67efuy5fwtydhwi8ftye6
+    inline_response_200_1:
+      type: object
+      properties:
+        log:
+          type: boolean
+          example: true
+        token:
+          type: string
+          example: jkewihfuiwefnwehf74873tr632uhrn34h3uihfyu764hfhty
+    inline_response_401_1:
+      type: object
+      properties:
+        log:
+          type: string
+          example: Contraseña incorrecta
+    
+    inline_response_200_log_true:
+      type: object
+      properties:
+        log:
+          type: boolean
+          example: true
+
+    inline_response_200_2:
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            user_id:
+              type: integer
+              example: 9
+            first_name:
+              type: string
+              example: Lionel
+            last_name:
+              type: string
+              example: Messi
+            email:
+              type: string
+              example: lionelmessi@mail.com
+    inline_response_401_2:
+      type: object
+      properties:
+        log:
+          type: string
+          example: El usuario no existe
+    inline_response_200_3:
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            user_id:
+              type: integer
+              example: 9
+            document_type_id:
+              type: integer
+              example: 1
+            document_key:
+              type: string
+              example: "24765147"
+            first_name:
+              type: string
+              example: Lionel
+            last_name:
+              type: string
+              example: Messi
+            role_id:
+              type: integer
+              example: 1
+            role_name:
+              type: string
+              example: Profesor
+            color:
+              type: string
+              example: ff7400
+        emission_date:
+          type: string
+          format: date-time
+          example: 2017-07-21T17:32:28Z
+    inline_response_401_3:
+      type: object
+      properties:
+        emission_date:
+          type: string
+          format: date-time
+        log:
+          type: string
+          example: El usuario no existe
+
+    auth_change_password_body:
+      required:
+      - password
+      - new_password
+      type: object
+      properties:
+        password:
+          type: string
+          example: uigf67efuy5fwtydhwi8ftye6
+        new_password:
+          type: string
+          example: yuqwgryew673hr89hufrhef78
+
+    auth_modify_user_body:
+      required:
+      - user_id
+      - first_name
+      - email
+      - last_name
+      type: object
+      properties:
+        form:
+          type: object
+          properties:
+            user_id:
+              type: integer
+              example: 15
+            email:
+              type: string
+              example: "lionelmessi@mail.com"
+            first_name:
+              type: string
+              example: Lionel
+            last_name:
+              type: string
+              example: Messi
+
+    auth_load_data_body:
+      required:
+      - users
+      - expenses
+      - payments
+      type: object
+      properties:
+        form:
+          type: object
+          properties:
+            users:
+              type: array
+              items:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    example: 15
+                  email:
+                    type: string
+                    example: "lionelmessi@mail.com"
+                  first_name:
+                    type: string
+                    example: Lionel
+                  last_name:
+                    type: string
+                    example: Messi
+            expenses:
+              type: array
+              items:
+                type: object
+                properties:
+                  expense_id:
+                    type: integer
+                    example: 1
+                  user_id:
+                    type: integer
+                    example: 15
+                  amount:
+                    type: number
+                    example: 100
+                  description:
+                    type: string
+                    example: "Gasto de Lionel"
+                  date:
+                    type: string
+                    example: "2021-01-01"
+            payments:
+              type: array
+              items:
+                type: object
+                properties:
+                  payment_id:
+                    type: integer
+                    example: 1
+                  user_id:
+                    type: integer
+                    example: 15
+                  amount:
+                    type: number
+                    example: 100
+                  date:
+                    type: string
+                    example: "2021-01-01"
