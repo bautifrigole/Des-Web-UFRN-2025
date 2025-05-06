@@ -25,7 +25,7 @@ html {
 }
 
 .sidebar {
-    width: 350px;
+    width: 400px;
     background-color: rgb(17 17 17 );
     color: white;
     display: flex;
@@ -38,6 +38,7 @@ html {
     font-size: 1.5rem;
     font-weight: bold;
     margin-top: -1.2rem;
+    margin-left: 1rem;
 }
 
 .nav-menu {
@@ -50,12 +51,16 @@ html {
     text-decoration: none;
     font-size: 1rem;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
     transition: background-color 0.2s ease-in-out;
 }
 
 .nav-link:hover {
     background-color: #585858;
+}
+
+.nav-link.active {
+    border-bottom: 0.5px solid white;
+    font-weight: 600;
 }
 
 .main-content {

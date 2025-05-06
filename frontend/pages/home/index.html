@@ -13,8 +13,8 @@
         <aside class="sidebar">
             <h2 class="logo">Calculate Costs $</h2>
             <nav class="nav-menu">
-                <a href="#" class="nav-link">My Stocks</a>
-                <a href="#" class="nav-link">Global Stocks</a>
+                <p href="#" class="nav-link active">My Stocks</p>
+                <p href="#" class="nav-link">Global Stocks</p>
             </nav>
         </aside>
 
@@ -31,10 +31,19 @@
             <main class="dashboard">
                 <h1>Welcome to your dashboard!</h1>
                 <p>Unfortunately, you do not have any data registered yet.</p>
-                <!-- Aqui você poderá futuramente renderizar os dados da API -->
             </main>
         </div>
     </div>
 </body>
+
+<script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+</script>
 
 </html>
