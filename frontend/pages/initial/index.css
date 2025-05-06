@@ -92,3 +92,12 @@ main {
         width: 50%;
     }
 }
+
+.center-icon {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+    color: #3b3e41; 
+    font-size: 200px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
