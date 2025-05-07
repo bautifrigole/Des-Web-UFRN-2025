@@ -20,6 +20,16 @@
     margin-top: 0;
 }
 
+.accordion-content-form {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 0;
+}
+
 .accordion-content.show {
     max-height: 500px; 
     overflow-y: auto;   
