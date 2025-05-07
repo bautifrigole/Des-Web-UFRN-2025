@@ -35,14 +35,12 @@
                 <form class="profit-form">
                     <div class="form-group">
                         <label for="profit-name">Name</label>
-                        <input type="text" id="profit-name" name="profit-name" placeholder="Entry"
-                            required />
+                        <input type="text" id="profit-name" name="profit-name" placeholder="Entry" required />
                     </div>
 
                     <div class="form-group">
                         <label for="profit-amount">Amount</label>
-                        <input type="number" id="profit-amount" name="profit-amount" placeholder="Enter amount"
-                            required />
+                        <input type="text" id="profit-amount" name="profit-amount" placeholder="Enter amount" required />
                     </div>
 
                     <div class="form-group">
@@ -53,7 +51,7 @@
                             <option>EUR</option>
                             <option>CNY</option>
                         </select>
-                    
+
                     </div>
                     <div class="div-btn">
                         <button type="submit" class="cancel-btn">Clear</button>
@@ -73,6 +71,49 @@
             link.classList.add('active');
         });
     });
+
+    const clearBtn = document.querySelector('.cancel-btn');
+    const profitForm = document.querySelector('.profit-form');
+
+    // I'm almost sure that this is not the best approach...
+    clearBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+        profitForm.reset();
+    });
+
+    const localeMap = {
+        BRL: 'pt-BR',
+        USD: 'en-US',
+        EUR: 'de-DE',
+        CNY: 'zh-CN'
+    };
+
+    function formatCurrency(value, currency) {
+        const locale = localeMap[currency] || 'en-US';
+        return new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency: currency
+        }).format(value / 100);
+    }
+
+    const amountInput = document.getElementById('profit-amount');
+    const currencySelect = document.querySelector('select');
+
+    amountInput.addEventListener('input', function () {
+        let value = this.value.replace(/\D/g, '');
+        if (value === '') value = '0';
+        const currency = currencySelect.value;
+        const formattedValue = formatCurrency(value, currency);
+        this.value = formattedValue;
+    });
+
+    currencySelect.addEventListener('change', function () {
+        let value = amountInput.value.replace(/\D/g, '');
+        if (value === '') value = '0';
+        const formattedValue = formatCurrency(value, this.value);
+        amountInput.value = formattedValue;
+    });
 </script>
+
 
 </html>
