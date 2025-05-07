@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense</title>
+    <link rel="stylesheet" href="../home/index.css" />
+    <link rel="stylesheet" href="../profit/index.css" />
+    <!-- We should use templates or components here...-->
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2 class="logo">Calculate Costs $</h2>
+            <nav class="nav-menu">
+                <p href="#" class="nav-link active">My Stocks</p>
+                <p href="#" class="nav-link">Global Stocks</p>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            <header class="topbar">
+                <nav class="top-nav">
+                    <a href="" class="top-link">Home</a>
+                    <a href="../profit/index.html" class="top-link">Add Payment +</a>
+                    <a href="../loss/index.html" class="top-link">Add Expense - </a>
+                </nav>
+                <div class="user-info">Hello, User</div>
+            </header>
+            <main class="dashboard">
+                <h1>Expense page</h1>
+                <form class="profit-form">
+                    <div class="form-group">
+                        <label for="profit-name">Loss Name</label>
+                        <input type="text" id="profit-name" name="profit-name" placeholder="Entry" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profit-amount">Amount</label>
+                        <input type="text" id="profit-amount" name="profit-amount" placeholder="Enter amount"
+                            required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profit-currency">Currency</label>
+                        <select class="">
+                            <option>BRL</option>
+                            <option>USD</option>
+                            <option>EUR</option>
+                            <option>CNY</option>
+                        </select>
+
+                    </div>
+                    <div class="div-btn">
+                        <button type="submit" class="cancel-btn">Clear</button>
+                        <button type="submit" class="submit-btn">Add Expense</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</body>
+
+<script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+</script>
+
+</html>
