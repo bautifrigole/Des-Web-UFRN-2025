@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Controle de Investimentos</title>
     <link rel="stylesheet" href="../home/index.css" />
+    <link rel="stylesheet" href="index.css" />
     <!-- We should use templates or components here...-->
 </head>
 
@@ -22,7 +23,7 @@
         <div class="main-content">
             <header class="topbar">
                 <nav class="top-nav">
-                    <a href="" class="top-link">Home</a>
+                    <a href="../home/index.html" class="top-link">Home</a>
                     <a href="../profit/index.html" class="top-link">Add Profit +</a>
                     <a href="../loss/index.html" class="top-link">Add Loss - </a>
                 </nav>
@@ -31,7 +32,34 @@
 
             <main class="dashboard">
                 <h1>Profit page</h1>
-                <p>Unfortunately, you do not have any profit registered yet.</p>
+                <form class="profit-form">
+                    <div class="form-group">
+                        <label for="profit-name">Name</label>
+                        <input type="text" id="profit-name" name="profit-name" placeholder="Entry"
+                            required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profit-amount">Amount</label>
+                        <input type="number" id="profit-amount" name="profit-amount" placeholder="Enter amount"
+                            required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profit-currency">Currency</label>
+                        <select class="">
+                            <option>BRL</option>
+                            <option>USD</option>
+                            <option>EUR</option>
+                            <option>CNY</option>
+                        </select>
+                    
+                    </div>
+                    <div class="div-btn">
+                        <button type="submit" class="cancel-btn">Clear</button>
+                        <button type="submit" class="submit-btn">Add Profit</button>
+                    </div>
+                </form>
             </main>
         </div>
     </div>
