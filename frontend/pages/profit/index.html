@@ -7,7 +7,7 @@
     <title>Controle de Investimentos</title>
     <link rel="stylesheet" href="../home/index.css" />
     <link rel="stylesheet" href="index.css" />
-    <!-- We should use templates or components here...-->
+    <!-- Should we use templates here? -->
 </head>
 
 <body>
@@ -26,6 +26,7 @@
                     <a href="../home/index.html" class="top-link">Home</a>
                     <a href="../profit/index.html" class="top-link">Add Payment +</a>
                     <a href="../loss/index.html" class="top-link">Add Expense - </a>
+                    <a href="#" id="wallet-link" class="top-link">Wallet</a>
                 </nav>
                 <div class="user-info">Hello, User</div>
             </header>
@@ -55,8 +56,7 @@
                     </div>
                     <div class="div-btn">
                         <button type="submit" class="cancel-btn">Clear</button>
-
-                        <button type="submit" class="submit-btn">Add Payment</button>
+                        <button type="submit" class="submit-btn">Add Profit</button>
                     </div>
                 </form>
             </main>
@@ -82,6 +82,8 @@
         profitForm.reset();
     });
 
+    // https://pt.stackoverflow.com/questions/181922/formatar-moeda-brasileira-em-javascript
+    // I got this method from this stack overflow page. Scroll down, is one of the 4th answers (for me)
     const localeMap = {
         BRL: 'pt-BR',
         USD: 'en-US',

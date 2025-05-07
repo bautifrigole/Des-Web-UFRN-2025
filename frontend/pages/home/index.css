@@ -118,3 +118,7 @@ html {
     font-weight: bold;
 }
 
+#wallet-link {
+    cursor: not-allowed;
+    color: gray;
+}
