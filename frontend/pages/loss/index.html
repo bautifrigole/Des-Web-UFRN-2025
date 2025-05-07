@@ -8,6 +8,7 @@
     <title>Expense</title>
     <link rel="stylesheet" href="../home/index.css" />
     <link rel="stylesheet" href="../profit/index.css" />
+    <link rel="stylesheet" href="../../components/stocks/index.css" />
     <!-- We should use templates or components here...-->
 </head>
 
@@ -17,7 +18,9 @@
             <h2 class="logo">Calculate Costs $</h2>
             <nav class="nav-menu">
                 <p href="#" class="nav-link active">My Stocks</p>
-                <p href="#" class="nav-link">Global Stocks</p>
+                <p class="nav-link accordion">Global Stocks</p>
+                <div class="accordion-content-form" id="global-stocks-container">
+                </div>
             </nav>
         </aside>
 
@@ -75,5 +78,6 @@
         });
     });
 </script>
+<script src="../../components/stocks/index.js"></script>
 
 </html>

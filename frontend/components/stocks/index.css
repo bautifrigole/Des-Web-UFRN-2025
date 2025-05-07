@@ -27,6 +27,13 @@
     padding-right: 5px; 
 }
 
+.accordion-content-form.show {
+    max-height: 800px; 
+    overflow-y: auto;   
+    margin-top: 10px;
+    padding-right: 5px; 
+}
+
 /* I already faced issues using this scrollbar and I guess it was because of the browser version, 
    but we should test, I'm not sure if this will work every time*/
 .accordion-content::-webkit-scrollbar {

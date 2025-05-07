@@ -7,6 +7,7 @@
     <title>Controle de Investimentos</title>
     <link rel="stylesheet" href="../home/index.css" />
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="../../components/stocks/index.css" />
     <!-- Should we use templates here? -->
 </head>
 
@@ -16,7 +17,9 @@
             <h2 class="logo">Calculate Costs $</h2>
             <nav class="nav-menu">
                 <p href="#" class="nav-link active">My Stocks</p>
-                <p href="#" class="nav-link">Global Stocks</p>
+                <p class="nav-link accordion">Global Stocks</p>
+                <div class="accordion-content-form" id="global-stocks-container">
+                </div>
             </nav>
         </aside>
 
@@ -117,6 +120,7 @@
         amountInput.value = formattedValue;
     });
 </script>
+<script src="../../components/stocks/index.js"></script>
 
 
 </html>
