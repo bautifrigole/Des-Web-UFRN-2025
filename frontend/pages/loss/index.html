@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Controle de Investimentos</title>
     <link rel="stylesheet" href="../home/index.css" />
+    <link rel="stylesheet" href="../profit/index.css" />
     <!-- We should use templates or components here...-->
 </head>
 
@@ -28,10 +29,35 @@
                 </nav>
                 <div class="user-info">Hello, User</div>
             </header>
-
             <main class="dashboard">
                 <h1>Loss page</h1>
-                <p>Unfortunately, you do not have any loss registered yet.</p>
+                <form class="profit-form">
+                    <div class="form-group">
+                        <label for="profit-name">Loss Name</label>
+                        <input type="text" id="profit-name" name="profit-name" placeholder="Entry" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profit-amount">Amount</label>
+                        <input type="text" id="profit-amount" name="profit-amount" placeholder="Enter amount"
+                            required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profit-currency">Currency</label>
+                        <select class="">
+                            <option>BRL</option>
+                            <option>USD</option>
+                            <option>EUR</option>
+                            <option>CNY</option>
+                        </select>
+
+                    </div>
+                    <div class="div-btn">
+                        <button type="submit" class="cancel-btn">Clear</button>
+                        <button type="submit" class="submit-btn">Add Loss</button>
+                    </div>
+                </form>
             </main>
         </div>
     </div>
