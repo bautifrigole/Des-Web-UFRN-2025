@@ -37,7 +37,8 @@ html {
 
 .nav-menu {
     display: flex;
-    gap: 5rem;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .nav-link {
@@ -109,3 +110,11 @@ html {
     font-size: 1rem;
     color: #4b5563;
 }
+
+.add-group {
+    font-size: 24px;
+    text-align: center;
+    color: green;
+    font-weight: bold;
+}
+
