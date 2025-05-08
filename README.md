@@ -16,11 +16,11 @@ Create a .env file in the project folder with the following database details:
 ```
 PGUSER=<username>
 PGHOST=<host>
-PGPASSWORD=<contraseña>
-PGDATABASE=<nombre_db>
-PGPORT=<puerto>
+PGPASSWORD=<password>
+PGDATABASE=<db_name>
+PGPORT=<port>
 
-jwtSecret=<clave_servidor>
+jwtSecret=<server_password>
 ```
 
 ## Run app
