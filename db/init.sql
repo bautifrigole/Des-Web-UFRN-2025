@@ -44,3 +44,5 @@ INSERT INTO status (status_name) VALUES
 -- We need an user to perform queries
 INSERT INTO user_account (first_name, last_name, email, user_password, status_id) VALUES
     ('Pelé', 'O Rei', 'pele.orei@example.com', '$2b$10$jS2nldt.dVtMRE/r1HByBOZoJEExyIKWAWsaBbGJ2sYfU7hfWcAk6', 1);
+
+-- $2b$10$jS2nldt.dVtMRE/r1HByBOZoJEExyIKWAWsaBbGJ2sYfU7hfWcAk6 === "pelemaiorquemaradonaemessi"
