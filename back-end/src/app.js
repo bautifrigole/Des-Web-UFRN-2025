@@ -19,6 +19,8 @@ app.use(express.json());
 app.use(deviceInfo);
 app.use("/", require("./routes/user"));
 app.use("/", require("./routes/auth"));
+app.use("/", require("./routes/expense"));
+app.use("/", require("./routes/income"));
 
 app.use((req, res) => {
     res.status(404).send("Error 404: Not Found");

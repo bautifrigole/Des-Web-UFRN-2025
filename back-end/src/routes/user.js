@@ -11,7 +11,7 @@ router.post("/register", async (req, res, next) => {
         const { first_name, last_name, email, user_password } = req.body;
         
         const existsUser = await database.existsUser(email);
-        if (existsUser.rowCount > 0) return res.status(401).json({ log: "El usuario ya existe" });
+        if (existsUser.rowCount > 0) return res.status(401).json({ log: "User email already exists" });
 
         const saltRounds = 10;
         const salt = await bcrypt.genSalt(saltRounds);
@@ -33,7 +33,7 @@ router.put("/modify-user", authorization, async (req, res, next) => {
         user_id = req.user_id;
 
         const existsUser = await database.existsUserByID(user_id);
-        if (existsUser.rowCount === 0) return res.status(401).json({ log: "El usuario no existe" });
+        if (existsUser.rowCount === 0) return res.status(401).json({ log: "User does not exist" });
         
         await database.updateUser(user_id, first_name, last_name, email);
 
@@ -52,7 +52,7 @@ router.get("/user", authorization, async (req, res) => {
         if (user.rowCount != 0) {
             res.status(200).json({ user: user.rows[0] });
         } else {
-            res.status(401).json({ user: undefined, log: `El usuario no existe` });
+            res.status(401).json({ user: undefined, log: `User does not exist` });
         }
     } catch (error) {
         console.log(error);

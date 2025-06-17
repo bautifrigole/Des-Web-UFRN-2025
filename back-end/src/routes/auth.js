@@ -14,7 +14,7 @@ router.post("/login", async (req, res) => {
         const result = await database.getUserByEmail(email);
 
         if (result.rowCount === 0)
-            return res.status(401).json({ log: `${email} no existe` });
+            return res.status(401).json({ log: `Email does not exist` });
 
         const validPassword = await bcrypt.compare(
             user_password,
@@ -22,7 +22,7 @@ router.post("/login", async (req, res) => {
         );
 
         if (!validPassword)
-            return res.status(401).json({ log: "Contraseña incorrecta" });
+            return res.status(401).json({ log: "Incorrect password" });
 
         const token = await generateJwt(result.rows[0].user_id);
         res.status(200).json({ log: true, token });
@@ -53,7 +53,7 @@ router.post("/change-password", authorization, async (req, res, next) => {
         );
 
         if (!validPassword)
-            return res.status(401).json({ log: "Contraseña incorrecta" });
+            return res.status(401).json({ log: "Incorrect password" });
 
         const saltRounds = 10;
         const salt = await bcrypt.genSalt(saltRounds);

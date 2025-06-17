@@ -4,7 +4,7 @@ const authorization = require("../middleware/authorization");
 
 const router = Router();
 
-router.post("/add-expense", authorization, async (req, res) => {
+router.post("/add-income", authorization, async (req, res) => {
     try {
         const userId = req.user_id;
         var { description, amount, date } = req.body;
@@ -13,9 +13,9 @@ router.post("/add-expense", authorization, async (req, res) => {
             date = new Date().toISOString();
         }
         
-        await database.addExpense(userId, description, date, amount);
+        await database.addIncome(userId, description, date, amount);
 
-        res.status(200).json({ log: "Expense created" });
+        res.status(200).json({ log: "Income created" });
     } catch (error) {
         console.log(error);
         res.status(500).json({ log: "Server error" });

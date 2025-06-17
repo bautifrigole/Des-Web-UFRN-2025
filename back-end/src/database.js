@@ -97,4 +97,19 @@ async function updateUser(user_id, first_name, last_name, email) {
     return result;
 }
 
-module.exports = { existsUser, existsUserByID, getUserByID, getUserByEmail, modifyPassword, addUser, setUserLastLogin, getUserLastLogin, getUsersWithLastName, updateUserStatus, updateUser };
+async function addExpense(user_id, description, expense_timestamp, expense_amount) {
+    const result = await makeQuery(
+        "INSERT INTO expense (user_id, description, expense_timestamp, expense_amount) VALUES (" + user_id + ", '" + description + "', '" + expense_timestamp + "', " + expense_amount + ") RETURNING expense_id;"
+    );
+    return result;
+}
+
+async function addIncome(user_id, description, income_timestamp, income_amount) {
+    const result = await makeQuery(
+        "INSERT INTO income (user_id, description, income_timestamp, income_amount) VALUES (" + user_id + ", '" + description + "', '" + income_timestamp + "', " + income_amount + ") RETURNING income_id;"
+    );
+    return result;
+}
+
+module.exports = { existsUser, existsUserByID, getUserByID, getUserByEmail, modifyPassword, addUser, setUserLastLogin, getUserLastLogin, getUsersWithLastName, updateUserStatus, updateUser, addExpense,
+addIncome };
