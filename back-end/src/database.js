@@ -3,11 +3,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const pool = new Pool({
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
-    database: process.env.PGDATABASE,
-    password: process.env.PGPASSWORD,
-    port: process.env.PGPORT,
+    user: process.env.PGUSER || 'user',
+    host: process.env.PGHOST || 'localhost',
+    database: process.env.PGDATABASE || 'desweb',
+    password: process.env.PGPASSWORD || 'password',
+    port: process.env.PGPORT || 5432,
     ssl: false
 });
 
