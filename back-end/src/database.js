@@ -97,9 +97,44 @@ async function updateUser(user_id, first_name, last_name, email) {
     return result;
 }
 
+async function deleteUser(user_id) {
+    const result = await makeQuery(
+        "UPDATE user_account SET status_id = 2 WHERE user_id = " + user_id + ";"
+    );
+    return result;
+}
+
 async function addExpense(user_id, description, expense_timestamp, expense_amount) {
     const result = await makeQuery(
         "INSERT INTO expense (user_id, description, expense_timestamp, expense_amount) VALUES (" + user_id + ", '" + description + "', '" + expense_timestamp + "', " + expense_amount + ") RETURNING expense_id;"
+    );
+    return result;
+}
+
+async function getExpensesFromUser(user_id) {
+    const result = await makeQuery(
+        "SELECT * FROM expense WHERE user_id = " + user_id + " ORDER BY expense_timestamp DESC;"
+    );
+    return result;
+}
+
+async function updateExpense(expense_id, description, expense_timestamp, expense_amount) {
+    const result = await makeQuery(
+        "UPDATE expense SET description = '" + description + "', expense_timestamp = '" + expense_timestamp + "', expense_amount = " + expense_amount + " WHERE expense_id = " + expense_id + ";"
+    );
+    return result;
+}
+
+async function deleteExpense(expense_id) {
+    const result = await makeQuery(
+        "UPDATE expense SET status_id = 2 WHERE expense_id = " + expense_id + ";"
+    );
+    return result;
+}
+
+async function existsExpense(expense_id) {
+    const result = await makeQuery(
+        "SELECT * FROM expense WHERE expense_id = " + expense_id + " AND status_id = 1;"
     );
     return result;
 }
@@ -111,5 +146,34 @@ async function addIncome(user_id, description, income_timestamp, income_amount) 
     return result;
 }
 
-module.exports = { existsUser, existsUserByID, getUserByID, getUserByEmail, modifyPassword, addUser, setUserLastLogin, getUserLastLogin, getUsersWithLastName, updateUserStatus, updateUser, addExpense,
-addIncome };
+async function getIncomesFromUser(user_id) {
+    const result = await makeQuery(
+        "SELECT * FROM income WHERE user_id = " + user_id + " ORDER BY income_timestamp DESC;"
+    );
+    return result;
+}
+
+async function updateIncome(income_id, description, income_timestamp, income_amount) {
+    const result = await makeQuery(
+        "UPDATE income SET description = '" + description + "', income_timestamp = '" + income_timestamp + "', income_amount = " + income_amount + " WHERE income_id = " + income_id + ";"
+    );
+    return result;
+}
+
+async function deleteIncome(income_id) {
+    const result = await makeQuery(
+        "UPDATE income SET status_id = 2 WHERE income_id = " + income_id + ";"
+    );
+    return result;
+}
+
+async function existsIncome(income_id) {
+    const result = await makeQuery(
+        "SELECT * FROM income WHERE income_id = " + income_id + " AND status_id = 1;"
+    );
+    return result;
+}
+
+module.exports = { existsUser, existsUserByID, getUserByID, getUserByEmail, modifyPassword, addUser, setUserLastLogin, getUserLastLogin, getUsersWithLastName, updateUserStatus, updateUser, deleteUser, 
+addExpense, getExpensesFromUser, updateExpense, deleteExpense, existsExpense,
+addIncome, getIncomesFromUser, updateIncome, deleteIncome, existsIncome };
