@@ -1,4 +1,12 @@
-.profit-form {
+.expense-form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.income-form {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
@@ -25,6 +33,7 @@
     background-color: #ffffff;
     color: #0f172a;
 }
+
 
 
 .form-group input:focus {
@@ -64,48 +73,4 @@
 .div-btn {
     display: flex;
     justify-content: space-between;
-}
-
-.member-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.member-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-input {
-    margin: 0.5rem;
-}
-
-.member-input {
-    flex-grow: 1;
-    padding: 0.5rem 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: #ffffff;
-    color: #0f172a;
-}
-
-.member-input:focus {
-    outline: none;
-    border-color: #1f2937;
-}
-
-.back-btn {
-    margin-bottom: 1rem;
-    display: inline-block;
-}
-
-.add-btn {
-    background-color: #3b82f6;
-}
-
-.add-btn:hover {
-    background-color: #2563eb;
 }

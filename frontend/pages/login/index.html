@@ -5,13 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login</title>
-  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="/pages/login/index.css" />
 </head>
 
 <body>
   <main>
     <h1>Login</h1>
-    <form onsubmit="event.preventDefault(); window.location.href='../home/index.html';">
+    <form>
       <label for="email">E-mail</label>
       <input type="email" id="email" name="email" placeholder="exemplo@email.com" required />
 
@@ -20,15 +20,13 @@
         <input type="password" id="password" name="password" placeholder="••••••••" required />
       </div>
 
-      <button type="submit">
-        <a class="link-ref" href="../home/index.html">
-          Entrar
-        </a>
-      </button>
+      <button type="submit">Entrar</button>
     </form>
 
-    <a href="../initial/index.html" class="back-link">Voltar</a>
+    <a href="/pages/initial/index.html" class="back-link">Voltar</a>
   </main>
+
+  <script src="/pages/login/index.js"></script>
 </body>
 
 </html>

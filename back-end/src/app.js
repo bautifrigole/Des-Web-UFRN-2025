@@ -15,6 +15,12 @@ const corsOptions = {
 };
 app.options("*", cors(corsOptions));
 
+app.use(express.static(path.join(__dirname, '..', '..', 'frontend')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', '..', 'frontend', 'pages', 'initial', 'index.html'));
+});
+
 app.use(express.json());
 app.use(deviceInfo);
 app.use("/", require("./routes/user"));
