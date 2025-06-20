@@ -69,7 +69,7 @@ async function logout() {
     },
     body: JSON.stringify({ user_id: user_id})
   });
-  
+
   if(logout.status === 200)
     alert("Logout successful");
 
