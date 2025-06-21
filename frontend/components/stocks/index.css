@@ -31,7 +31,7 @@
 }
 
 .accordion-content.show {
-    max-height: 500px; 
+    max-height: 700px; 
     overflow-y: auto;   
     margin-top: 10px;
     padding-right: 5px; 
