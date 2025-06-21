@@ -122,3 +122,12 @@ html {
     cursor: not-allowed;
     color: gray;
 }
+
+#logout-tag {
+    cursor: pointer;
+    color: rgb(4, 63, 63);
+}
+
+#logout-tag:hover {
+    color:#0f172a;
+}

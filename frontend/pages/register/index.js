@@ -1,27 +1,29 @@
-const form = document.querySelector('form');
+const form = document.getElementById('register-form');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const email = form.email.value;
+  const name = form.name.value;
+  const last_name = form.last_name.value;
   const password = form.password.value;
 
   try {
-    const res = await fetch('/login', {
+    const res = await fetch('/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email, user_password: password })
+      body: JSON.stringify({ first_name: name, last_name: last_name, email, user_password: password })
     });
 
     const data = await res.json();
-    console.log("Fetch login ==>", data);
+    console.log("Fetch register ==>", data);
 
     if (res.ok) {
-      window.location.href = '/pages/home/index.html';
+      alert("User created successfully!")
+      window.location.href = '/pages/login/index.html';
       localStorage.setItem('token', data.token);
-      localStorage.setItem('user_id', data.user_id);
     } else {
       alert('Error: ' + data.log);
     }
