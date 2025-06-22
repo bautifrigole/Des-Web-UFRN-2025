@@ -13,11 +13,12 @@ router.post("/add-expense", authorization, async (req, res) => {
             date = new Date().toISOString();
         }
         
+        // A stock is an expense and vice-versa.
         if(category === "Stock") {
             await database.addStock(userId, description, date, amount);
-        } else {
-            await database.addExpense(userId, description, date, amount, category);
-        }
+        } 
+
+        await database.addExpense(userId, description, date, amount, category);
 
         res.status(200).json({ log: "Expense created" });
     } catch (error) {
