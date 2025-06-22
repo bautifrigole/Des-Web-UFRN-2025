@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 });
 
-
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
     };
@@ -145,11 +144,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         const expenseCategories = {};
 
         expensesData.expenses.forEach(expense => {
-            expenseCategories[expense.description] = (expenseCategories[expense.description] || 0) + expense.expense_amount;
+            expenseCategories[expense.category] = (expenseCategories[expense.category] || 0) + expense.expense_amount;
         });
 
         const labels = Object.keys(expenseCategories);
         const data = Object.values(expenseCategories);
+        console.log("Expense data ===>", data)
 
         new Chart(ctx, {
             type: 'doughnut',
@@ -193,6 +193,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         const recentTransactions = allTransactions.slice(0, 7);
 
+        console.log("RECENT TRANSACTIONS ===>", recentTransactions)
         recentTransactions.forEach(t => {
             const isIncome = t.type === 'Income';
             const row = `
@@ -205,6 +206,11 @@ document.addEventListener('DOMContentLoaded', async function () {
                     <td class="p-3 text-center">
                         <span class="px-2 py-1 text-xs font-medium rounded-full ${isIncome ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
                             ${t.type}
+                        </span>
+                    </td>
+                    <td class="p-3 text-center">
+                        <span class="px-2 py-1 text-xs font-medium rounded-full">
+                            ${t.category}
                         </span>
                     </td>
                 </tr>
