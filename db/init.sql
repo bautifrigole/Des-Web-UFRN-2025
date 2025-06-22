@@ -42,9 +42,8 @@ CREATE TABLE stock (
     user_id INT NOT NULL REFERENCES user_account(user_id),
     stock_code VARCHAR(100) NOT NULL,
     stock_timestamp TIMESTAMP NOT NULL DEFAULT NOW(),
-    price REAL NOT NULL DEFAULT 0,
-    status_id INT NOT NULL DEFAULT 1 REFERENCES status(status_id)
-)
+    price REAL NOT NULL DEFAULT 0
+);
 
 -- Insertion
 

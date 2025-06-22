@@ -176,7 +176,7 @@ async function existsIncome(income_id) {
 
 async function addStock(user_id, stock_code, stock_timestamp, price) {
     const result = await makeQuery(
-        "INSERT INTO income (user_id, stock_code, stock_timestamp, price) VALUES (" + user_id + ", '" + stock_code + "', '" + stock_timestamp + "', " + price + "') RETURNING income_id;"
+        "INSERT INTO stock (user_id, stock_code, stock_timestamp, price) VALUES (" + user_id + ", '" + stock_code + "', '" + stock_timestamp + "', '" + price + "') RETURNING stock_id;"
     );
     return result;
 }
