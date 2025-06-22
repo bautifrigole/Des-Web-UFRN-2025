@@ -37,6 +37,15 @@ CREATE TABLE income (
     status_id INT NOT NULL DEFAULT 1 REFERENCES status(status_id)
 );
 
+CREATE TABLE stock (
+    stock_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL REFERENCES user_account(user_id),
+    stock_code VARCHAR(100) NOT NULL,
+    stock_timestamp TIMESTAMP NOT NULL DEFAULT NOW(),
+    price REAL NOT NULL DEFAULT 0,
+    status_id INT NOT NULL DEFAULT 1 REFERENCES status(status_id)
+)
+
 -- Insertion
 
 INSERT INTO status (status_name) VALUES

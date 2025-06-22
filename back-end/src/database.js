@@ -104,9 +104,9 @@ async function deleteUser(user_id) {
     return result;
 }
 
-async function addExpense(user_id, description, expense_timestamp, expense_amount) {
+async function addExpense(user_id, description, expense_timestamp, expense_amount, category) {
     const result = await makeQuery(
-        "INSERT INTO expense (user_id, description, expense_timestamp, expense_amount) VALUES (" + user_id + ", '" + description + "', '" + expense_timestamp + "', " + expense_amount + ") RETURNING expense_id;"
+        "INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (" + user_id + ", '" + description + "', '" + expense_timestamp + "', " + expense_amount + ", '" + category + "') RETURNING expense_id;"
     );
     return result;
 }
@@ -139,9 +139,9 @@ async function existsExpense(expense_id) {
     return result;
 }
 
-async function addIncome(user_id, description, income_timestamp, income_amount) {
+async function addIncome(user_id, description, income_timestamp, income_amount, category) {
     const result = await makeQuery(
-        "INSERT INTO income (user_id, description, income_timestamp, income_amount) VALUES (" + user_id + ", '" + description + "', '" + income_timestamp + "', " + income_amount + ") RETURNING income_id;"
+        "INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (" + user_id + ", '" + description + "', '" + income_timestamp + "', " + income_amount + ", '" + category + "') RETURNING income_id;"
     );
     return result;
 }
@@ -174,6 +174,13 @@ async function existsIncome(income_id) {
     return result;
 }
 
+async function addStock(user_id, stock_code, stock_timestamp, price) {
+    const result = await makeQuery(
+        "INSERT INTO income (user_id, stock_code, stock_timestamp, price) VALUES (" + user_id + ", '" + stock_code + "', '" + stock_timestamp + "', " + price + "') RETURNING income_id;"
+    );
+    return result;
+}
+
 module.exports = { existsUser, existsUserByID, getUserByID, getUserByEmail, modifyPassword, addUser, setUserLastLogin, getUserLastLogin, getUsersWithLastName, updateUserStatus, updateUser, deleteUser, 
 addExpense, getExpensesFromUser, updateExpense, deleteExpense, existsExpense,
-addIncome, getIncomesFromUser, updateIncome, deleteIncome, existsIncome };
+addIncome, getIncomesFromUser, updateIncome, deleteIncome, existsIncome, addStock};

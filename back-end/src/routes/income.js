@@ -7,13 +7,13 @@ const router = Router();
 router.post("/add-income", authorization, async (req, res) => {
     try {
         const userId = req.user_id;
-        var { description, amount, date } = req.body;
+        var { description, amount, date, category } = req.body;
 
         if (date === undefined || date === null || date === "") {
             date = new Date().toISOString();
         }
         
-        await database.addIncome(userId, description, date, amount);
+        await database.addIncome(userId, description, date, amount, category);
 
         res.status(200).json({ log: "Income created" });
     } catch (error) {

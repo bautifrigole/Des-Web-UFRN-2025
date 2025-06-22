@@ -7,13 +7,17 @@ const router = Router();
 router.post("/add-expense", authorization, async (req, res) => {
     try {
         const userId = req.user_id;
-        var { description, amount, date } = req.body;
+        var { description, amount, date, category } = req.body;
 
         if (date === undefined || date === null || date === "") {
             date = new Date().toISOString();
         }
         
-        await database.addExpense(userId, description, date, amount);
+        if(category === "Stock") {
+            await database.addStock(userId, description, date, amount);
+        } else {
+            await database.addExpense(userId, description, date, amount, category);
+        }
 
         res.status(200).json({ log: "Expense created" });
     } catch (error) {
