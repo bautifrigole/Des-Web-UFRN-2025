@@ -21,6 +21,7 @@ CREATE TABLE expense (
 	expense_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL REFERENCES user_account(user_id),
     description VARCHAR(100) NOT NULL,
+    category VARCHAR(100) NOT NULL,
     expense_timestamp TIMESTAMP NOT NULL DEFAULT NOW(),
     expense_amount REAL NOT NULL DEFAULT 0,
     status_id INT NOT NULL DEFAULT 1 REFERENCES status(status_id)
@@ -30,6 +31,7 @@ CREATE TABLE income (
 	income_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL REFERENCES user_account(user_id),
     description VARCHAR(100) NOT NULL,
+    category VARCHAR(100) NOT NULL,
     income_timestamp TIMESTAMP NOT NULL DEFAULT NOW(),
     income_amount REAL NOT NULL DEFAULT 0,
     status_id INT NOT NULL DEFAULT 1 REFERENCES status(status_id)
