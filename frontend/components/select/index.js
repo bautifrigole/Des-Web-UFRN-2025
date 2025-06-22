@@ -31,16 +31,4 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Please enter a valid category name.');
         }
     });
-
-    // document.getElementById('income-form').addEventListener('submit', (event) => {
-    //     event.preventDefault(); // Prevents the page from reloading
-    //     const selectedCategory = categorySelect.value;
-
-    //     if (selectedCategory && selectedCategory !== 'add_new_category') {
-    //         alert(`Form submitted with Category: ${selectedCategory}`);
-    //         // In a real application, you would send this data to the server.
-    //     } else {
-    //         alert('Please select or create a category before submitting.');
-    //     }
-    // });
 });

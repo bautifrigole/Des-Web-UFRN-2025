@@ -37,9 +37,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             const expensesData = await resExpenses.json();
             const incomesData = await resIncomes.json();
 
-            console.log("EXPENSE RESPONSE ====>", expensesData.expenses);
-            console.log("incomesData RESPONSE ====>", incomesData.incomes);
-
             populateStats(incomesData, expensesData);
             renderMonthlyChart(incomesData, expensesData);
             renderExpenseDoughnutChart(incomesData, expensesData);
@@ -59,9 +56,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     };
 
     function populateStats(incomesData, expensesData) {
-        console.log("INCOMES ===> ", incomesData);
-        console.log("EXPENSES ===> ", expensesData);
-
         const totalIncome = incomesData.incomes.reduce((sum, item) => sum + item.income_amount, 0);
         const totalExpenses = expensesData.expenses.reduce((sum, item) => sum + item.expense_amount, 0);
         const netBalance = totalIncome - totalExpenses;

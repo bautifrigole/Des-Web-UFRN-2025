@@ -93,4 +93,16 @@ router.delete("/delete-expense", authorization, async (req, res) => {
     }
 });
 
+router.get("/stocks", authorization, async (req, res) => {
+    try {
+        const userId = req.user_id;
+        const stocks = await database.getStocks(userId);
+        if (stocks.rowCount === 0) return res.status(200).json({ log: "Stocks are empty" });
+        
+        return res.status(200).json({ stocks: stocks.rows})
+    } catch(error) {
+        console.log("ERROR ===>", error)
+    }
+})
+
 module.exports = router;
