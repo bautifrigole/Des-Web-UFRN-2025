@@ -118,16 +118,16 @@ async function renderGlobalStocks() {
             <div class="stock-metrics">
                 <div class="metric-item">
                     <span class="label">Cost Basis</span>
-                    <span class="value">${avgPurchasePrice.toLocaleString('pt-BR', { style: 'currency', currency: 'USD' })}</span>
+                    <span class="value">${avgPurchasePrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
                 </div>
                 <div class="metric-item">
                     <span class="label">Market Value</span>
-                    <span class="value">${currentPrice !== null ? currentPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'USD' }) : 'N/A'}</span>
+                    <span class="value">${currentPrice !== null ? currentPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) : 'N/A'}</span>
                 </div>
             </div>
             <div class="balance-section">
                 <div class="percentage-indicator ${indicatorClass}">
-                    <span class="value">${totalProfit !== null ? totalProfit.toLocaleString('pt-BR', { style: 'currency', currency: 'USD' }) : 'N/A'}</span>
+                    <span class="value">${totalProfit !== null ? totalProfit.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) : 'N/A'}</span>
                     <span class="ml-2">${triangleIcon} ${profitLossPercent !== null ? profitLossPercent.toFixed(2) + '%' : ''}</span>
                 </div>
             </div>`;
