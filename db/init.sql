@@ -61,3 +61,22 @@ INSERT INTO user_account (first_name, last_name, email, user_password, status_id
     ('Lionel', 'Messi (GOAT)', 'messi@example.com', '$2b$10$4v00Iz29Tvf7AETlKjHHo.G54fDALWMVSEVjD9N/rYGSFVYGbc0bW', 1);
 
 -- $2b$10$4v00Iz29Tvf7AETlKjHHo.G54fDALWMVSEVjD9N/rYGSFVYGbc0bW === "campeao2021nomaracana"
+
+-- Insert some expenses and stocks
+
+INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'MSI', '2025-06-09', 406, 'Stock');
+INSERT INTO stock (user_id, stock_code, stock_timestamp, price) VALUES (2, 'MSI', '2025-06-09', '406');
+
+INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'KO', '2025-06-05', 69, 'Stock');
+INSERT INTO stock (user_id, stock_code, stock_timestamp, price) VALUES (2, 'KO', '2025-06-05', '69');
+
+INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'TSLA', '2025-04-03', 503, 'Stock');
+INSERT INTO stock (user_id, stock_code, stock_timestamp, price) VALUES (2, 'TSLA', '2025-04-03', '503');
+
+INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'Laptop', '2025-05-23', 4609, 'Study');
+
+-- Insert some incomes
+
+INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (2, 'Job', '2025-03-03', 2100, 'Salary');
+
+INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (2, 'Web page', '2025-05-26', 350, 'Freelance Project');

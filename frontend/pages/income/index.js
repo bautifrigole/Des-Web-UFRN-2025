@@ -9,7 +9,7 @@ document.getElementById('income-form').addEventListener('submit', async (e) => {
     const description = document.getElementById('description').value;
     const amount = parseFloat(document.getElementById('amount').value);
     const date = document.getElementById('date').value;
-    const category = document.getElementById('income-category').value;
+    const category = document.getElementById('category-select').value;
 
     try {
         const res = await fetch('/add-income', {
