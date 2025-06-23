@@ -25,6 +25,8 @@ async function initializeApp() {
         if (!response.ok) throw new Error(`Stock fetch failed /stocks: ${response.statusText}`);
 
         const data = await response.json();
+        if (data.stocks === undefined) data.stocks = [];
+        
         appState.stocks = data.stocks;
         await renderGlobalStocks();
         renderWalletCards();
@@ -76,7 +78,7 @@ async function renderGlobalStocks() {
     accordionContent.innerHTML = "";
 
     if (appState.stocks.length === 0) {
-        accordionContent.innerHTML = '<p style="padding: 1rem; text-align: center;">Nenhuma ação encontrada.</p>';
+        accordionContent.innerHTML = '<p style="padding: 1rem; text-align: center;">No stocks found.</p>';
         return;
     }
 

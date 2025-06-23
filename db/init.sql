@@ -56,3 +56,8 @@ INSERT INTO user_account (first_name, last_name, email, user_password, status_id
     ('Pelé', 'O Rei', 'pele.orei@example.com', '$2b$10$jS2nldt.dVtMRE/r1HByBOZoJEExyIKWAWsaBbGJ2sYfU7hfWcAk6', 1);
 
 -- $2b$10$jS2nldt.dVtMRE/r1HByBOZoJEExyIKWAWsaBbGJ2sYfU7hfWcAk6 === "pelemaiorquemaradonaemessi"
+
+INSERT INTO user_account (first_name, last_name, email, user_password, status_id) VALUES
+    ('Lionel', 'Messi (GOAT)', 'messi@example.com', '$2b$10$4v00Iz29Tvf7AETlKjHHo.G54fDALWMVSEVjD9N/rYGSFVYGbc0bW', 1);
+
+-- $2b$10$4v00Iz29Tvf7AETlKjHHo.G54fDALWMVSEVjD9N/rYGSFVYGbc0bW === "campeao2021nomaracana"
