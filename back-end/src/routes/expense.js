@@ -7,13 +7,18 @@ const router = Router();
 router.post("/add-expense", authorization, async (req, res) => {
     try {
         const userId = req.user_id;
-        var { description, amount, date } = req.body;
+        var { description, amount, date, category } = req.body;
 
         if (date === undefined || date === null || date === "") {
             date = new Date().toISOString();
         }
         
-        await database.addExpense(userId, description, date, amount);
+        // A stock is an expense and vice-versa.
+        if(category === "Stock") {
+            await database.addStock(userId, description, date, amount);
+        } 
+
+        await database.addExpense(userId, description, date, amount, category);
 
         res.status(200).json({ log: "Expense created" });
     } catch (error) {
@@ -87,5 +92,17 @@ router.delete("/delete-expense", authorization, async (req, res) => {
         res.status(500).json({ log: "Server error" });
     }
 });
+
+router.get("/stocks", authorization, async (req, res) => {
+    try {
+        const userId = req.user_id;
+        const stocks = await database.getStocks(userId);
+        if (stocks.rowCount === 0) return res.status(200).json({ log: "Stocks are empty" });
+        
+        return res.status(200).json({ stocks: stocks.rows})
+    } catch(error) {
+        console.log("ERROR ===>", error)
+    }
+})
 
 module.exports = router;

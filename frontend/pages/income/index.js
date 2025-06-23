@@ -9,7 +9,7 @@ document.getElementById('income-form').addEventListener('submit', async (e) => {
     const description = document.getElementById('description').value;
     const amount = parseFloat(document.getElementById('amount').value);
     const date = document.getElementById('date').value;
-    const currency = document.getElementById('income-currency').value;
+    const category = document.getElementById('category-select').value;
 
     try {
         const res = await fetch('/add-income', {
@@ -18,7 +18,7 @@ document.getElementById('income-form').addEventListener('submit', async (e) => {
             'Content-Type': 'application/json',
             'token': token
         },
-        body: JSON.stringify({ description, amount, date, currency })
+        body: JSON.stringify({ description, amount, date, category })
         });
 
         if (res.ok) {

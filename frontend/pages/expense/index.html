@@ -2,89 +2,97 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Expense</title>
-    <link rel="stylesheet" href="/pages/home/index.css" />
-    <link rel="stylesheet" href="/pages/income/index.css" />
-    <link rel="stylesheet" href="/components/stocks/index.css" />
-    <!-- We should use templates or components here...-->
+  <title>Expense</title>
+  <link rel="stylesheet" href="/pages/home/index.css" />
+  <link rel="stylesheet" href="/pages/income/index.css" />
+  <link rel="stylesheet" href="/components/stocks/index.css" />
+  <link rel="stylesheet" href="/components/select/index.css" />
+  <link rel="icon" href="/assets/favicon.png" type="image/png">
 </head>
 
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <h2 class="logo">Calculate Costs $</h2>
-            <nav class="nav-menu">
-                <p href="#" class="nav-link active">My Stocks</p>
-                <p class="nav-link accordion">Global Stocks</p>
-                <div class="accordion-content-form" id="global-stocks-container">
-                </div>
-            </nav>
-        </aside>
+  <div class="container">
+    <aside class="sidebar">
+      <h2 class="logo">Calculate Costs $</h2>
+      <p class="nav-link accordion">Global Stocks</p>
+      <div class="accordion-content" id="global-stocks-container">
+      </div>
+    </aside>
 
-        <div class="main-content">
-            <header class="topbar">
-                <nav class="top-nav">
-                    <a href="/pages/home/index.html" class="top-link">Home</a>
-                    <a href="/pages/expense/index.html" class="top-link">Add Expense -</a>
-                    <a href="/pages/income/index.html" class="top-link">Add Income +</a>
-                    <a href="#" id="wallet-link" class="top-link">Wallet</a>
-                </nav>
-                <div class="user-info">Hello, User</div>
-                <div class="user-info">Logout</div>
-                <p>Logout</p>
-            </header>
-            <main class="dashboard">
-                <h1>Expense page</h1>
-                <form class="expense-form" id="expense-form">
-                    <div class="form-group">
-                      <label for="description">Description</label>
-                      <input type="text" id="description" name="description" placeholder="Description of the expense" required />
-                    </div>
-                  
-                    <div class="form-group">
-                      <label for="amount">Amount</label>
-                      <input type="number" id="amount" name="amount" placeholder="Enter amount" required />
-                    </div>
-                  
-                    <div class="form-group">
-                      <label for="date">Date</label>
-                      <input type="date" id="date" name="date" required />
-                    </div>
-                  
-                    <div class="form-group">
-                      <label for="expense-currency">Currency</label>
-                      <select id="expense-currency" name="currency">
-                        <option>BRL</option>
-                        <option>USD</option>
-                        <option>EUR</option>
-                        <option>CNY</option>
-                      </select>
-                    </div>
-                  
-                    <div class="div-btn">
-                      <button type="reset" class="cancel-btn">Clear</button>
-                      <button type="submit" class="submit-btn">Add Expense</button>
-                    </div>
-                  </form>
-                  
-            </main>
+    <div class="main-content">
+      <header class="topbar">
+        <nav class="top-nav">
+          <a href="/pages/home/index.html" class="top-link">Home</a>
+          <a href="/pages/expense/index.html" class="top-link">Add Expense</a>
+          <a href="/pages/income/index.html" class="top-link">Add Income</a>
+          <a href="/pages/wallet/index.html" id="wallet-link" class="top-link">Wallet</a>
+        </nav>
+        <div class="user-info">
+          <a id="logout-tag">Logout</a>
         </div>
+      </header>
+      <main class="expense-form">
+        <h1>Expense page</h1>
+        <form class="expense-form" id="expense-form">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" name="description" placeholder="Description of the expense" required />
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter amount" required />
+          </div>
+
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required />
+          </div>
+
+          <div class="form-group">
+            <label for="category-select">Category</label>
+            <select id="category-select" name="category">
+              <option value="" disabled selected>Select category</option>
+              <option value="Salary">Salary</option>
+              <option value="Stock">Stock</option>
+              <option value="Food">Food</option>
+              <option value="Study">Study</option>
+              <option value="Bonus">Bonus</option>
+              <option value="add_new_category" id="create-new-option">New category +</option>
+            </select>
+          </div>
+          <div id="new-category-wrapper">
+            <label for="new-category-input">New Category Name</label>
+            <input type="text" id="new-category-input" placeholder="e.g., Freelance Project" />
+            <button type="button" id="add-category-btn">Add Category</button>
+          </div>
+
+          <div class="div-btn">
+            <button type="reset" class="cancel-btn">Clear</button>
+            <button type="submit" class="submit-btn">Add Expense</button>
+          </div>
+        </form>
+
+      </main>
     </div>
+  </div>
 </body>
 
 <script>
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-        });
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
     });
+  });
 </script>
 <script src="/pages/expense/index.js"></script>
 <script src="/components/stocks/index.js"></script>
+<script src="/components/select/index.js"></script>
+<script src="/components/logout/index.js"></script>
 
 </html>

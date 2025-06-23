@@ -49,14 +49,14 @@ async function getUserByEmail(email) {
 
 async function modifyPassword(user_id, new_password) {
     const result = await makeQuery(
-        "UPDATE user_account SET user_password = '"+ new_password + "' WHERE user_id = " + user_id + ";"
+        "UPDATE user_account SET user_password = '" + new_password + "' WHERE user_id = " + user_id + ";"
     );
     return result.rowCount > 0;
 }
 
 async function addUser(first_name, last_name, email, user_password) {
     const result = await makeQuery(
-        "INSERT INTO user_account (first_name, last_name, email, user_password) values ('" + first_name + "', '" + last_name  + "', '" + email + "', '" + user_password +  "') RETURNING user_id;"
+        "INSERT INTO user_account (first_name, last_name, email, user_password) values ('" + first_name + "', '" + last_name + "', '" + email + "', '" + user_password + "') RETURNING user_id;"
     );
     return result;
 }
@@ -77,7 +77,7 @@ async function getUserLastLogin(user_id) {
 
 async function getUsersWithLastName(last_name) {
     const result = await makeQuery(
-        "SELECT user_id, first_name, last_name, email, status_id, status_name NATURAL JOIN status WHERE LOWER(last_name) LIKE '"+ last_name.toLowerCase() +"%' ORDER BY status_id ASC;"
+        "SELECT user_id, first_name, last_name, email, status_id, status_name NATURAL JOIN status WHERE LOWER(last_name) LIKE '" + last_name.toLowerCase() + "%' ORDER BY status_id ASC;"
     );
     return result;
 }
@@ -93,7 +93,7 @@ async function updateUser(user_id, first_name, last_name, email) {
     const result = await makeQuery(
         "UPDATE user_account AS u SET first_name = u2.first_name, last_name = u2.last_name, email = u2.email FROM (VALUES (" +
         user_id + ", '" + first_name + "', '" + last_name + "', '" + email + "')) AS u2(user_id, first_name, last_name, email) WHERE u2.user_id = u.user_id;"
-        );
+    );
     return result;
 }
 
@@ -104,9 +104,9 @@ async function deleteUser(user_id) {
     return result;
 }
 
-async function addExpense(user_id, description, expense_timestamp, expense_amount) {
+async function addExpense(user_id, description, expense_timestamp, expense_amount, category) {
     const result = await makeQuery(
-        "INSERT INTO expense (user_id, description, expense_timestamp, expense_amount) VALUES (" + user_id + ", '" + description + "', '" + expense_timestamp + "', " + expense_amount + ") RETURNING expense_id;"
+        "INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (" + user_id + ", '" + description + "', '" + expense_timestamp + "', " + expense_amount + ", '" + category + "') RETURNING expense_id;"
     );
     return result;
 }
@@ -139,9 +139,9 @@ async function existsExpense(expense_id) {
     return result;
 }
 
-async function addIncome(user_id, description, income_timestamp, income_amount) {
+async function addIncome(user_id, description, income_timestamp, income_amount, category) {
     const result = await makeQuery(
-        "INSERT INTO income (user_id, description, income_timestamp, income_amount) VALUES (" + user_id + ", '" + description + "', '" + income_timestamp + "', " + income_amount + ") RETURNING income_id;"
+        "INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (" + user_id + ", '" + description + "', '" + income_timestamp + "', " + income_amount + ", '" + category + "') RETURNING income_id;"
     );
     return result;
 }
@@ -174,6 +174,22 @@ async function existsIncome(income_id) {
     return result;
 }
 
-module.exports = { existsUser, existsUserByID, getUserByID, getUserByEmail, modifyPassword, addUser, setUserLastLogin, getUserLastLogin, getUsersWithLastName, updateUserStatus, updateUser, deleteUser, 
-addExpense, getExpensesFromUser, updateExpense, deleteExpense, existsExpense,
-addIncome, getIncomesFromUser, updateIncome, deleteIncome, existsIncome };
+async function addStock(user_id, stock_code, stock_timestamp, price) {
+    const result = await makeQuery(
+        "INSERT INTO stock (user_id, stock_code, stock_timestamp, price) VALUES (" + user_id + ", '" + stock_code + "', '" + stock_timestamp + "', '" + price + "') RETURNING stock_id;"
+    );
+    return result;
+}
+
+async function getStocks(user_id) {
+    const result = await makeQuery(
+        "SELECT * FROM stock WHERE user_id = " + user_id + ";"
+    );
+    return result;
+}
+
+module.exports = {
+    existsUser, existsUserByID, getUserByID, getUserByEmail, modifyPassword, addUser, setUserLastLogin, getUserLastLogin, getUsersWithLastName, updateUserStatus, updateUser, deleteUser,
+    addExpense, getExpensesFromUser, updateExpense, deleteExpense, existsExpense,
+    addIncome, getIncomesFromUser, updateIncome, deleteIncome, existsIncome, addStock, getStocks
+};
