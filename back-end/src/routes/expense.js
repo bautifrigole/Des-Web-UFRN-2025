@@ -12,11 +12,11 @@ router.post("/add-expense", authorization, async (req, res) => {
         if (date === undefined || date === null || date === "") {
             date = new Date().toISOString();
         }
-        
+
         // A stock is an expense and vice-versa.
-        if(category === "Stock") {
+        if (category === "Stock") {
             await database.addStock(userId, description, date, amount);
-        } 
+        }
 
         await database.addExpense(userId, description, date, amount, category);
 
@@ -78,9 +78,11 @@ router.put("/update-expense", authorization, async (req, res) => {
 
 router.delete("/delete-expense", authorization, async (req, res) => {
     try {
-        const { expense_id } = req.body;
+        const { expense_id, category } = req.body;
         const userId = req.user_id;
-
+        if (category === "Stock") {
+            await database.deleteStock(userId, expense_id);
+        }
         const existsExpense = await database.existsExpense(expense_id, userId);
         if (existsExpense.rowCount === 0) return res.status(401).json({ log: "Expense does not exist" });
 
@@ -98,9 +100,9 @@ router.get("/stocks", authorization, async (req, res) => {
         const userId = req.user_id;
         const stocks = await database.getStocks(userId);
         if (stocks.rowCount === 0) return res.status(200).json({ log: "Stocks are empty" });
-        
-        return res.status(200).json({ stocks: stocks.rows})
-    } catch(error) {
+
+        return res.status(200).json({ stocks: stocks.rows })
+    } catch (error) {
         console.log("ERROR ===>", error)
     }
 })

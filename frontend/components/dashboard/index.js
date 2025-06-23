@@ -37,10 +37,10 @@ document.addEventListener('DOMContentLoaded', async function () {
             const expensesData = await resExpenses.json();
             const incomesData = await resIncomes.json();
 
-            populateStats(incomesData, expensesData);
+            addStats(incomesData, expensesData);
             renderMonthlyChart(incomesData, expensesData);
             renderExpenseDoughnutChart(incomesData, expensesData);
-            populateTransactionsTable(incomesData, expensesData);
+            addRecentTransactions(incomesData, expensesData);
             
         } else {
             dashboardText.textContent = 'Unfortunately, you do not have any data registered yet.';
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
     };
 
-    function populateStats(incomesData, expensesData) {
+    function addStats(incomesData, expensesData) {
         const totalIncome = incomesData.incomes.reduce((sum, item) => sum + item.income_amount, 0);
         const totalExpenses = expensesData.expenses.reduce((sum, item) => sum + item.expense_amount, 0);
         const netBalance = totalIncome - totalExpenses;
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    function populateTransactionsTable(incomesData, expensesData) {
+    function addRecentTransactions(incomesData, expensesData) {
         const tableBody = document.getElementById('transactions-table-body');
         const allTransactions = [
             ...incomesData.incomes.map(i => ({ ...i, type: 'Income', date: new Date(i.income_timestamp), amount: i.income_amount })),

@@ -58,7 +58,7 @@ INSERT INTO user_account (first_name, last_name, email, user_password, status_id
 -- $2b$10$jS2nldt.dVtMRE/r1HByBOZoJEExyIKWAWsaBbGJ2sYfU7hfWcAk6 === "pelemaiorquemaradonaemessi"
 
 INSERT INTO user_account (first_name, last_name, email, user_password, status_id) VALUES
-    ('Lionel', 'Messi (GOAT)', 'messi@example.com', '$2b$10$4v00Iz29Tvf7AETlKjHHo.G54fDALWMVSEVjD9N/rYGSFVYGbc0bW', 1);
+    ('Pelé > Messi', 'Pelé > Messi ', 'messi@example.com', '$2b$10$4v00Iz29Tvf7AETlKjHHo.G54fDALWMVSEVjD9N/rYGSFVYGbc0bW', 1);
 
 -- $2b$10$4v00Iz29Tvf7AETlKjHHo.G54fDALWMVSEVjD9N/rYGSFVYGbc0bW === "campeao2021nomaracana"
 
@@ -66,6 +66,7 @@ INSERT INTO user_account (first_name, last_name, email, user_password, status_id
 
 INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'MSI', '2025-06-09', 406, 'Stock');
 INSERT INTO stock (user_id, stock_code, stock_timestamp, price) VALUES (2, 'MSI', '2025-06-09', '406');
+INSERT INTO stock (user_id, stock_code, stock_timestamp, price) VALUES (2, 'MSI', '2025-06-09', '404');
 
 INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'KO', '2025-06-05', 69, 'Stock');
 INSERT INTO stock (user_id, stock_code, stock_timestamp, price) VALUES (2, 'KO', '2025-06-05', '69');
@@ -73,10 +74,17 @@ INSERT INTO stock (user_id, stock_code, stock_timestamp, price) VALUES (2, 'KO',
 INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'TSLA', '2025-04-03', 503, 'Stock');
 INSERT INTO stock (user_id, stock_code, stock_timestamp, price) VALUES (2, 'TSLA', '2025-04-03', '503');
 
-INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'Laptop', '2025-05-23', 4609, 'Study');
+INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'Laptop', '2025-05-23', 2609, 'Study');
+INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'Book Models with Sysadl ', '2025-06-14', 281.74, 'Programming');
+INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'Oil', '2025-06-13', 64.22, 'Car');
+INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'Oil', '2025-06-07', 34.58, 'Car');
+INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'Pizza', '2025-03-29', 109.30, 'Food');
+INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, category) VALUES (2, 'Burguer', '2025-03-29', 44.29, 'Food');
 
 -- Insert some incomes
 
 INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (2, 'Job', '2025-03-03', 2100, 'Salary');
 
 INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (2, 'Web page', '2025-05-26', 350, 'Freelance Project');
+INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (2, 'Mobile App', '2025-05-26', 689, 'Freelance Project');
+INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (2, 'BBSA3', '2025-06-26', 123.71, 'Profit');

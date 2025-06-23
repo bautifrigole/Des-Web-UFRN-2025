@@ -127,7 +127,7 @@ async function updateExpense(expense_id, description, expense_timestamp, expense
 
 async function deleteExpense(expense_id) {
     const result = await makeQuery(
-        "UPDATE expense SET status_id = 2 WHERE expense_id = " + expense_id + ";"
+        "DELETE FROM expense WHERE expense_id = " + expense_id + ";"
     );
     return result;
 }
@@ -162,7 +162,7 @@ async function updateIncome(income_id, description, income_timestamp, income_amo
 
 async function deleteIncome(income_id) {
     const result = await makeQuery(
-        "UPDATE income SET status_id = 2 WHERE income_id = " + income_id + ";"
+        "DELETE FROM income WHERE income_id = " + income_id + ";"
     );
     return result;
 }
@@ -188,8 +188,16 @@ async function getStocks(user_id) {
     return result;
 }
 
+async function deleteStock(user_id, stock_id) {
+    const result = await makeQuery(
+        "DELETE FROM stock WHERE user_id = " + user_id + " AND stock_id = " + stock_id + ";"
+    );
+
+    return result;
+}
+
 module.exports = {
     existsUser, existsUserByID, getUserByID, getUserByEmail, modifyPassword, addUser, setUserLastLogin, getUserLastLogin, getUsersWithLastName, updateUserStatus, updateUser, deleteUser,
     addExpense, getExpensesFromUser, updateExpense, deleteExpense, existsExpense,
-    addIncome, getIncomesFromUser, updateIncome, deleteIncome, existsIncome, addStock, getStocks
+    addIncome, getIncomesFromUser, updateIncome, deleteIncome, existsIncome, addStock, getStocks, deleteStock
 };
