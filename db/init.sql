@@ -58,7 +58,7 @@ INSERT INTO user_account (first_name, last_name, email, user_password, status_id
 -- $2b$10$jS2nldt.dVtMRE/r1HByBOZoJEExyIKWAWsaBbGJ2sYfU7hfWcAk6 === "pelemaiorquemaradonaemessi"
 
 INSERT INTO user_account (first_name, last_name, email, user_password, status_id) VALUES
-    ('Pelé > Messi', 'Pelé > Messi ', 'messi@example.com', '$2b$10$4v00Iz29Tvf7AETlKjHHo.G54fDALWMVSEVjD9N/rYGSFVYGbc0bW', 1);
+    ('Lionel', 'Messi', 'messi@example.com', '$2b$10$4v00Iz29Tvf7AETlKjHHo.G54fDALWMVSEVjD9N/rYGSFVYGbc0bW', 1);
 
 -- $2b$10$4v00Iz29Tvf7AETlKjHHo.G54fDALWMVSEVjD9N/rYGSFVYGbc0bW === "campeao2021nomaracana"
 
@@ -86,5 +86,5 @@ INSERT INTO expense (user_id, description, expense_timestamp, expense_amount, ca
 INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (2, 'Job', '2025-03-03', 2100, 'Salary');
 
 INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (2, 'Web page', '2025-05-26', 350, 'Freelance Project');
-INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (2, 'Mobile App', '2025-05-26', 689, 'Freelance Project');
+INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (2, 'Messi > Pelé', '2025-05-26', 689, 'Freelance Project');
 INSERT INTO income (user_id, description, income_timestamp, income_amount, category) VALUES (2, 'BBSA3', '2025-06-26', 123.71, 'Profit');
